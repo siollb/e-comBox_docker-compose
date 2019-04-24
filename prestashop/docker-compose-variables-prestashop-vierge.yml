@@ -32,7 +32,7 @@ services :
       PS_HANDLE_DYNAMIC_DOMAIN : 1
       PS_FOLDER_ADMIN : administration
       PS_FOLDER_INSTALL : installation
- 
- volumes :
+
+volumes :
   data_bd: {}
   data_ps: {}

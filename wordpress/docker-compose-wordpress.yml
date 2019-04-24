@@ -16,7 +16,7 @@ services:
 
   wordpress:
     image: aporaf/wordpress-avec-wp-cli:1.0
-    container_name : wordpress-test
+    container_name : wordpress-${SUFFIXE}
     restart: always
     links :
       - db
@@ -28,7 +28,7 @@ services:
       - db
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: wordpress-${SUFFIXE}
+      WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: userWP
       WORDPRESS_DB_PASSWORD: mdpWP
       WORDPRESS_TABLE_PREFIX: "wp_"

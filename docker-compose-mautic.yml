@@ -1,0 +1,37 @@
+version: "2"
+services:
+  db:
+    image: mariadb
+    container_name : mautic-db-${SUFFIXE}
+    restart: always
+    expose :
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: bdAdmin
+      MYSQL_DATABASE: mautic
+      MYSQL_USER: userMautic
+      MYSQL_PASSWORD: mdpMautic
+    volumes:
+      - db_data_mautic:/var/lib/mysql
+
+  wordpress:
+    image: mautic/mautic
+    container_name : mautic-${SUFFIXE}
+    restart: always
+    links :
+      - db
+    ports:
+      - 9300-9399:80
+    volumes:
+      - mautic_data:/var/www/html
+    depends_on:
+      - db
+    environment:
+      MAUTIC_DB_HOST: db:3306
+      MAUTIC_DB_NAME: mautic
+      MAUTIC_DB_USER: userMautic
+      MAUTIC_DB_PASSWORD: mdpMautic
+
+volumes:
+  db_data_mautic: {}
+  mautic_data: {}

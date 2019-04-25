@@ -1,7 +1,7 @@
 version: "2"
 services:
   db:
-    image: mysql:5.7:latest
+    image: mysql:5.7
     container_name : wp-bd-${SUFFIXE}
     restart: always
     expose :
@@ -15,7 +15,7 @@ services:
       - db_data_wp:/var/lib/mysql
 
   wordpress:
-    image: aporaf/wordpress-avec-wp-cli:latest
+    image: aporaf/wordpress-avec-wp-cli:1.0
     container_name : wordpress-${SUFFIXE}
     restart: always
     links :

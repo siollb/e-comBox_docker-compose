@@ -4,7 +4,7 @@ services :
 
   db :
     image : mariadb
-    container_name : ps-bd-${SUFFIXE}
+    container_name : ps-db-${SUFFIXE}
     restart : always
     expose :
       - "3306"

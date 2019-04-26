@@ -1,0 +1,35 @@
+version: "2"
+services:
+  db:
+    image: mariadb
+    container_name : kb-db-${SUFFIXE}
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    expose :
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: bdAdmin
+      MYSQL_DATABASE: kanboard
+      MYSQL_USER: userKB
+      MYSQL_PASSWORD: mdpKB
+    volumes:
+      - db_data_kb:/var/lib/mysql
+
+  kanboard:
+    image: kanboard/kanboard
+    container_name : kanboard-${SUFFIXE}
+    restart: always
+    links :
+      - db
+    ports:
+      - 9600-9699:80
+    volumes:
+      - kb_data:/var/www/app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: mysql://userKB:mdpKB@db/kanboard
+
+volumes:
+  db_data_kb: {}
+  kb_data: {}

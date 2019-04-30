@@ -22,8 +22,8 @@ services:
       - 9500-9599:8069
     volumes:
       - odoo_data:/var/lib/odoo
-      - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
+      - odoo_config:/etc/odoo
+      - odoo_addons:/mnt/extra-addons
     depends_on:
       - db
     environment:
@@ -35,3 +35,5 @@ services:
 volumes:
   db_data_odoo: {}
   odoo_data: {}
+  odoo_config: {}
+  odoo_addons: {}

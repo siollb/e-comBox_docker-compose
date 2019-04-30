@@ -19,8 +19,6 @@ services:
     image: kanboard/kanboard
     container_name : kanboard-${SUFFIXE}
     restart: always
-    links :
-      - db
     ports:
       - 9600-9699:80
     volumes:

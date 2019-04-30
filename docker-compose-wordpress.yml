@@ -2,7 +2,7 @@ version: "2"
 services:
   db:
     image: mysql:5.7
-    container_name : wp-bd-${SUFFIXE}
+    container_name : wp-db-${SUFFIXE}
     restart: always
     expose :
       - "3306"
@@ -18,8 +18,6 @@ services:
     image: aporaf/wordpress-avec-wp-cli:1.0
     container_name : wordpress-${SUFFIXE}
     restart: always
-    links :
-      - db
     ports:
       - 9200-9299:80
     volumes:

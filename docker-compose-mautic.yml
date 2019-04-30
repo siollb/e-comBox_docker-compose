@@ -18,8 +18,6 @@ services:
     image: mautic/mautic
     container_name : mautic-${SUFFIXE}
     restart: always
-    links :
-      - db
     ports:
       - 9300-9399:80
     volumes:

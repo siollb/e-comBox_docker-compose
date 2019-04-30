@@ -19,8 +19,6 @@ services:
     image: bitnami/suitecrm:latest
     container_name : suitecrm-${SUFFIXE}
     restart: always
-    links :
-      - db
     ports:
       - 9400-9499:80
     volumes:

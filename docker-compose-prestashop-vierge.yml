@@ -20,8 +20,6 @@ services :
     image : prestashop/prestashop
     container_name : prestashop-${SUFFIXE}
     restart : always
-    links :
-      - db
     ports :
       - "9100-9199:80"
     volumes :

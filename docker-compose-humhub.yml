@@ -21,7 +21,9 @@ services:
     ports:
       - 9700-9799:80
     volumes:
-      - hh_data:/var/www/localhost/htdocs/protected
+      - hh_config:/var/www/localhost/htdocs/protected/config
+      - hh_uploads:/var/www/localhost/htdocs/uploads
+      - hh_modules:/var/www/localhost/htdocs/protected/modules
     depends_on:
       - db
     environment:
@@ -32,5 +34,7 @@ services:
       HUMHUB_AUTO_INSTALL: 1
 
 volumes:
-  db_data_hh: {}
-  hh_data: {}
+  db_data_hh:
+  hh_config:
+  hh_uploads:
+  hh_modules:

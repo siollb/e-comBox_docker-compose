@@ -22,7 +22,9 @@ services:
     ports:
       - 9600-9699:80
     volumes:
-      - kb_data:/var/www/app
+      - kb_data:/var/www/app/data
+      - kb_plugins:/var/www/app/plugins
+      - kb_ssl:/etc/nginx/ssl
     depends_on:
       - db
     environment:
@@ -31,3 +33,5 @@ services:
 volumes:
   db_data_kb: {}
   kb_data: {}
+  kb_plugins: {}
+  kb_ssl: {}

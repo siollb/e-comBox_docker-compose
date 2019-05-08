@@ -12,7 +12,7 @@ services:
       MYSQL_USER: userMautic
       MYSQL_PASSWORD: mdpMautic
     volumes:
-      - db_data_mautic:/var/lib/mysql
+      - mautic_data_db:/var/lib/mysql
 
   wordpress:
     image: mautic/mautic
@@ -31,5 +31,5 @@ services:
       MAUTIC_DB_PASSWORD: mdpMautic
 
 volumes:
-  db_data_mautic: {}
+  mautic_data_db: {}
   mautic_data: {}

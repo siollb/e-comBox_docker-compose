@@ -2,7 +2,7 @@ version: "2"
 services:
   db:
     image: mysql:5.7
-    container_name : wordpress-db-${SUFFIXE}
+    container_name : blog-db-${SUFFIXE}
     restart: always
     expose :
       - "3306"
@@ -12,16 +12,16 @@ services:
       MYSQL_USER: userWP
       MYSQL_PASSWORD: mdpWP
     volumes:
-      - wordpress_data_db:/var/lib/mysql
+      - blog_data_db:/var/lib/mysql
 
   wordpress:
     image: aporaf/wordpress-avec-wp-cli:1.0
-    container_name : wordpress-${SUFFIXE}
+    container_name : blog-${SUFFIXE}
     restart: always
     ports:
       - 9200-9299:80
     volumes:
-      - wordpress_data:/var/www/html
+      - blog_data:/var/www/html
     depends_on:
       - db
     environment:
@@ -32,5 +32,5 @@ services:
       WORDPRESS_TABLE_PREFIX: "wp_"
 
 volumes:
-  wordpress_data_db: {}
-  wordpress_data: {}
+  blog_data_db: {}
+  blog_data: {}

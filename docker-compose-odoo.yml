@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: userOdoo
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - db_data_odoo:/var/lib/postgresql/data
+      - odoo_data_db:/var/lib/postgresql/data
 
   odoo:
     image: odoo:12.0
@@ -22,8 +22,8 @@ services:
       - 9500-9599:8069
     volumes:
       - odoo_data:/var/lib/odoo
-      - odoo_config:/etc/odoo
-      - odoo_addons:/mnt/extra-addons
+      - odoo_data_config:/etc/odoo
+      - odoo_data_addons:/mnt/extra-addons
     depends_on:
       - db
     environment:
@@ -33,7 +33,7 @@ services:
       PASSWORD: mdpOdoo
 
 volumes:
-  db_data_odoo: {}
+  odoo_data_db: {}
   odoo_data: {}
-  odoo_config: {}
-  odoo_addons: {}
+  odoo_data_config: {}
+  odoo_data_addons: {}

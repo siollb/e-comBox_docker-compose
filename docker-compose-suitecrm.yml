@@ -7,7 +7,7 @@ services:
     expose :
       - "3306"
     volumes:
-      - db_data_suitecrm:/bitnami
+      - suitecrm_data_db:/bitnami
     environment:
       MARIADB_ROOT_PASSWORD: bdAdmin
       MARIADB_DATABASE: suitecrm
@@ -37,5 +37,5 @@ services:
       
 
 volumes:
-  db_data_suitecrm: {}
+  suitecrm_data_db: {}
   suitecrm_data: {}

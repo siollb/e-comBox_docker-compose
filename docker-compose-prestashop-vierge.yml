@@ -4,7 +4,7 @@ services :
 
   db :
     image : mariadb
-    container_name : ps-db-${SUFFIXE}
+    container_name : prestashop-db-${SUFFIXE}
     restart : always
     expose :
       - "3306"
@@ -14,7 +14,7 @@ services :
       MYSQL_USER : userPS
       MYSQL_PASSWORD : mdpPS
     volumes :
-      - db_data_ps:/var/lib/mysql
+      - prestashop_data_db:/var/lib/mysql
 
   prestashop :
     image : prestashop/prestashop
@@ -23,7 +23,7 @@ services :
     ports :
       - "9100-9199:80"
     volumes :
-      - ps_data:/var/www/html
+      - prestashop_data:/var/www/html
     depends_on :
       - db
     environment :
@@ -32,5 +32,5 @@ services :
       PS_FOLDER_INSTALL : installation
  
 volumes :
-  db_data_ps: {}
-  ps_data: {}
+  prestashop_data_db: {}
+  prestashop_data: {}

@@ -1,21 +1,18 @@
 version: "2"
 services:
   db:
-    image: mysql:5.7
+    image: aporaf/mariadb-blog:latest
     container_name : blog-db-${SUFFIXE}
     restart: always
     expose :
       - "3306"
     environment:
       MYSQL_ROOT_PASSWORD: bdAdmin
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: userWP
-      MYSQL_PASSWORD: mdpWP
     volumes:
       - blog_data_db:/var/lib/mysql
 
   wordpress:
-    image: aporaf/wordpress-avec-wp-cli:1.0
+    image: aporaf/blog-avec-wp-cli:latest
     container_name : blog-${SUFFIXE}
     restart: always
     ports:
@@ -24,12 +21,6 @@ services:
       - blog_data:/var/www/html
     depends_on:
       - db
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_USER: userWP
-      WORDPRESS_DB_PASSWORD: mdpWP
-      WORDPRESS_TABLE_PREFIX: "wp_"
 
 volumes:
   blog_data_db: {}

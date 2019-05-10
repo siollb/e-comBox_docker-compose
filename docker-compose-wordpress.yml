@@ -1,7 +1,7 @@
 version: "2"
 services:
   db:
-    image: mysql:5.7
+    image: mariadb:latest
     container_name : wordpress-db-${SUFFIXE}
     restart: always
     expose :
@@ -15,7 +15,7 @@ services:
       - wordpress_data_db:/var/lib/mysql
 
   wordpress:
-    image: aporaf/wordpress-avec-wp-cli:1.0
+    image: aporaf/wordpress-avec-wp-cli:latest
     container_name : wordpress-${SUFFIXE}
     restart: always
     ports:

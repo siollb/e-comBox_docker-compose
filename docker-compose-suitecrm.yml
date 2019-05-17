@@ -3,7 +3,7 @@ services:
   db:
     image: bitnami/mariadb:latest
     container_name : suitecrm-db-${SUFFIXE}
-    restart: always
+    restart: unless-stopped
     expose :
       - "3306"
     volumes:
@@ -18,7 +18,7 @@ services:
   suitecrm:
     image: bitnami/suitecrm:latest
     container_name : suitecrm-${SUFFIXE}
-    restart: always
+    restart: unless-stopped
     ports:
       - 9400-9499:80
     volumes:

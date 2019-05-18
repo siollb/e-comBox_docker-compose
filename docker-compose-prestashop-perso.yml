@@ -3,21 +3,18 @@ version : '2'
 services :
 
   db :
-    image : mariadb
+    image : aporaf/mariadb-prestashop:latest
     container_name : prestashop-db-${SUFFIXE}
     restart : unless-stopped
     expose :
       - "3306"
     environment :
       MYSQL_ROOT_PASSWORD : bdAdmin
-      MYSQL_DATABASE : prestashop
-      MYSQL_USER : userPS
-      MYSQL_PASSWORD : mdpPS
     volumes :
       - prestashop_data_db:/var/lib/mysql
 
   prestashop :
-    image : prestashop/prestashop
+    image : aporaf/prestashop-perso:latest
     container_name : prestashop-${SUFFIXE}
     restart : unless-stopped
     ports :
@@ -26,19 +23,6 @@ services :
       - prestashop_data:/var/www/html
     depends_on :
       - db
-    environment :
-      DB_SERVER : db
-      DB_NAME : prestashop
-      DB_USER : userPS
-      DB_PASSWD : mdpPS
-      DB_PREFIX : ps_
-      PS_LANGUAGES : fr
-      PS_LANGUAGE : fr
-      PS_COUNTRY : FR
-      PS_INSTALL_AUTO : 1
-      PS_HANDLE_DYNAMIC_DOMAIN : 1
-      PS_FOLDER_ADMIN : administration
-      PS_FOLDER_INSTALL : installation
  
 volumes :
   prestashop_data_db: {}

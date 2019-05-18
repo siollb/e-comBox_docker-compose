@@ -29,8 +29,8 @@ services :
     environment :
       DB_SERVER : db
       DB_NAME : prestashop
-      DB_USER : root
-      DB_PASSWD : bdAdmin
+      DB_USER : userPS
+      DB_PASSWD : mdpPS
       DB_PREFIX : ps_
       PS_LANGUAGES : fr
       PS_LANGUAGE : fr

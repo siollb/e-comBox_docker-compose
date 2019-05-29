@@ -1,27 +1,27 @@
 version: "2"
 services:
   db:
-    image: aporaf/mariadb-blog-perso:latest
-    container_name : blog-db-${SUFFIXE}
+    image: aporaf/mariadb-woocommerce-perso:latest
+    container_name : woocommerce-db-${SUFFIXE}
     restart: unless-stopped
     expose :
       - "3306"
     environment:
       MYSQL_ROOT_PASSWORD: bdAdmin
     volumes:
-      - blog_data_db:/var/lib/mysql
+      - woocommerce_data_db:/var/lib/mysql
 
   wordpress:
-    image: aporaf/blog-perso-avec-wp-cli:latest
-    container_name : blog-${SUFFIXE}
+    image: aporaf/woocommerce-perso-avec-wp-cli:latest
+    container_name : woocommerce-${SUFFIXE}
     restart: unless-stopped
     ports:
       - 9200-9299:80
     volumes:
-      - blog_data:/var/www/html
+      - woocommerce_data:/var/www/html
     depends_on:
       - db
 
 volumes:
-  blog_data_db: {}
-  blog_data: {}
+  woocommerce_data_db: {}
+  woocommerce_data: {}

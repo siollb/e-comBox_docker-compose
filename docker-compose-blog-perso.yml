@@ -1,7 +1,7 @@
 version: "2"
 services:
   db:
-    image: aporaf/mariadb-blog:latest
+    image: aporaf/mariadb-blog-perso:latest
     container_name : blog-db-${SUFFIXE}
     restart: unless-stopped
     expose :
@@ -12,7 +12,7 @@ services:
       - blog_data_db:/var/lib/mysql
 
   wordpress:
-    image: aporaf/blog-avec-wp-cli:latest
+    image: aporaf/blog-perso-avec-wp-cli:latest
     container_name : blog-${SUFFIXE}
     restart: unless-stopped
     ports:

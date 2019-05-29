@@ -1,0 +1,36 @@
+version: "2"
+services:
+  db:
+    image: mariadb:latest
+    container_name : wordpress-db-${SUFFIXE}
+    restart: unless-stopped
+    expose :
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: bdAdmin
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: userWP
+      MYSQL_PASSWORD: mdpWP
+    volumes:
+      - wordpress_data_db:/var/lib/mysql
+
+  wordpress:
+    image: aporaf/wordpress-avec-wp-cli:latest
+    container_name : wordpress-${SUFFIXE}
+    restart: unless-stopped
+    ports:
+      - 9200-9299:80
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: userWP
+      WORDPRESS_DB_PASSWORD: mdpWP
+      WORDPRESS_TABLE_PREFIX: "wp_"
+
+volumes:
+  wordpress_data_db: {}
+  wordpress_data: {}

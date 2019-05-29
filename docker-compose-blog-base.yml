@@ -1,0 +1,27 @@
+version: "2"
+services:
+  db:
+    image: aporaf/mariadb-blog:latest
+    container_name : blog-db-${SUFFIXE}
+    restart: unless-stopped
+    expose :
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: bdAdmin
+    volumes:
+      - blog_data_db:/var/lib/mysql
+
+  wordpress:
+    image: aporaf/blog-avec-wp-cli:latest
+    container_name : blog-${SUFFIXE}
+    restart: unless-stopped
+    ports:
+      - 9200-9299:80
+    volumes:
+      - blog_data:/var/www/html
+    depends_on:
+      - db
+
+volumes:
+  blog_data_db: {}
+  blog_data: {}

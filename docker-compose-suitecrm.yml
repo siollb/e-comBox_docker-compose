@@ -20,7 +20,6 @@ services:
     container_name : suitecrm-${SUFFIXE}
     restart: unless-stopped
     ports:
-      - 10400-10499:443
       - 9400-9499:80
     volumes:
       - suitecrm_data:/bitnami

@@ -21,6 +21,7 @@ services:
     restart: unless-stopped
     ports:
       - 9400-9499:80
+      - 10400-10499:443
     volumes:
       - suitecrm_data:/bitnami
     depends_on:

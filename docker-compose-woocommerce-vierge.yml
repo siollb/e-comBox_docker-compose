@@ -1,18 +1,21 @@
 version: "2"
 services:
   db:
-    image: aporaf/mariadb-woocommerce:latest
+    image: aporaf/mariadb-woocommerce-vierge:latest
     container_name : woocommerce-db-${SUFFIXE}
     restart: unless-stopped
     expose :
       - "3306"
     environment:
-      MYSQL_ROOT_PASSWORD: bdAdmin      
+      MYSQL_ROOT_PASSWORD: bdAdmin
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: userWP
+      MYSQL_PASSWORD: mdpWP     
     volumes:
       - woocommerce_data_db:/var/lib/mysql
 
   wordpress:
-    image: aporaf/woocommerce-avec-wp-cli:latest
+    image: aporaf/woocommerce-vierge-avec-wp-cli:latest
     container_name : woocommerce-${SUFFIXE}
     restart: unless-stopped
     ports:

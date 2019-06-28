@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     expose :
       - "3306"
-   environment:
+    environment:
       MYSQL_ROOT_PASSWORD: bdAdmin
       MYSQL_DATABASE: wordpress
       MYSQL_USER: userWP

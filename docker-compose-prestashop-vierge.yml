@@ -3,7 +3,7 @@ version : '2'
 services :
 
   db :
-    image : aporaf/mariadb-prestashop:latest
+    image : aporaf/mariadb-prestashop-vierge:latest
     container_name : prestashop-db-${SUFFIXE}
     restart : unless-stopped
     expose :
@@ -17,7 +17,7 @@ services :
       - prestashop_data_db:/var/lib/mysql
 
   prestashop :
-    image : aporaf/prestashop-perso:latest
+    image : aporaf/prestashop-vierge:latest
     container_name : prestashop-${SUFFIXE}
     restart : unless-stopped
     ports :

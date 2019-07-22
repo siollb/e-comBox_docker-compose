@@ -1,7 +1,7 @@
 version: "2"
 services:
   db:
-    image: bitnami/mariadb:latest
+    image: aporaf/mariadb-suitecrm:latest
     container_name : suitecrm-db-${SUFFIXE}
     restart: unless-stopped
     expose :
@@ -16,13 +16,14 @@ services:
     
 
   suitecrm:
-    image: bitnami/suitecrm:latest
+    image: aporaf/suitecrm:latest
     container_name : suitecrm-${SUFFIXE}
     restart: unless-stopped
     ports:
       - 9400-9499:80
     volumes:
       - suitecrm_data:/bitnami
+      - suitecrm_certs:/certs
     depends_on:
       - db
     environment:
@@ -35,7 +36,7 @@ services:
       SUITECRM_PASSWORD: scrmAdmin0
       SUITECRM_EMAIL: admin@btsmco.fr
       
-
 volumes:
   suitecrm_data_db: {}
   suitecrm_data: {}
+  suitecrm_certs: {}

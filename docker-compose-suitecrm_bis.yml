@@ -1,7 +1,7 @@
 version: "2"
 services:
   db:
-    image: mariadb:10.4
+    image: mariadb:10.3.6
     container_name : suitecrm-db-${SUFFIXE}
     restart: unless-stopped
     expose :

@@ -16,7 +16,7 @@ services:
       - kanboard_data_db:/var/lib/mysql
 
   kanboard:
-    image: kanboard/kanboard
+    image: kanboard/kanboard:v1.2.10
     container_name : kanboard-${SUFFIXE}
     restart: unless-stopped
     ports:

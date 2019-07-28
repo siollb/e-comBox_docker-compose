@@ -3,7 +3,7 @@ version : '2'
 services :
 
   db :
-    image : mariadb
+    image : mariadb:10.3
     container_name : prestashop-db-${SUFFIXE}
     restart : unless-stopped
     expose :

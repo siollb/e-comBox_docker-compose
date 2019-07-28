@@ -1,42 +1,48 @@
 version: "2"
 services:
   db:
-    image: aporaf/mariadb-suitecrm:latest
+    image: mariadb:10.3
     container_name : suitecrm-db-${SUFFIXE}
     restart: unless-stopped
     expose :
       - "3306"
+    #ports:
+      #- "3306"
     volumes:
-      - suitecrm_data_db:/bitnami
+      - suitecrm_data_db:/var/lib/mysql
     environment:
-      MARIADB_ROOT_PASSWORD: bdAdmin
-      MARIADB_DATABASE: suitecrm
-      MARIADB_USER: userSuiteCRM
-      MARIADB_PASSWORD: mdpSuiteCRM
+      MYSQL_ROOT_PASSWORD: bdAdmin
+      MYSQL_DATABASE: suitecrm
+      MYSQL_USER: userSuiteCRM
+      MYSQL_PASSWORD: mdpSuiteCRM
     
-
   suitecrm:
-    image: aporaf/suitecrm:latest
+    image: craftingjava/suitecrm:7.10.11
     container_name : suitecrm-${SUFFIXE}
     restart: unless-stopped
     ports:
       - 9400-9499:80
     volumes:
-      - suitecrm_data:/bitnami
-      - suitecrm_certs:/certs
+      - suitecrm_data:/var/www/html/upload
+      - suitecrm_conf:/var/www/html/conf.d
+    tty: true
     depends_on:
       - db
     environment:
-      MARIADB_HOST: db
-      MARIADB_PORT_NUMBER: 3306
-      SUITECRM_DATABASE_NAME: suitecrm
-      SUITECRM_DATABASE_USER: userSuiteCRM
-      SUITECRM_DATABASE_PASSWORD: mdpSuiteCRM
-      SUITECRM_USERNAME: adminSCRM
-      SUITECRM_PASSWORD: scrmAdmin0
-      SUITECRM_EMAIL: admin@btsmco.fr
+      DATABASE_HOST: db
+      DATABASE_TYPE: mysql
+      DATABASE_NAME: suitecrm
+      DB_ADMIN_USERNAME: userSuiteCRM
+      DB_ADMIN_PASSWORD: mdpSuiteCRM
+      SITE_USERNAME: adminSCRM
+      SITE_PASSWORD: scrmAdmin0
+      #SUITECRM_EMAIL: admin@btsmco.fr
+      DATE_FORMAT: d-m-Y
+      EXPORT_CHARSET: ISO-8859-1
+      DEFAULT_LANGUAGE: fr_FR
+      SYSTEM_NAME: Zentek CRM
       
 volumes:
   suitecrm_data_db: {}
   suitecrm_data: {}
-  suitecrm_certs: {}
+  suitecrm_conf: {}

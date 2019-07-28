@@ -3,7 +3,7 @@ services:
   db:
     image: mariadb:10.3
     container_name : wordpress-db-${SUFFIXE}
-    restart: unless-stopped
+    #restart: unless-stopped
     expose :
       - "3306"
     environment:
@@ -17,7 +17,7 @@ services:
   wordpress:
     image: aporaf/wordpress-avec-wp-cli:latest
     container_name : wordpress-${SUFFIXE}
-    restart: unless-stopped
+    #restart: unless-stopped
     ports:
       - 9200-9299:80
     volumes:

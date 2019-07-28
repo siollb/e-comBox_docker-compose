@@ -3,7 +3,7 @@ services:
   db:
     image: mariadb:10.3
     container_name : suitecrm-db-${SUFFIXE}
-    restart: unless-stopped
+    #restart: unless-stopped
     expose :
       - "3306"
     #ports:
@@ -19,7 +19,7 @@ services:
   suitecrm:
     image: craftingjava/suitecrm:7.10.11
     container_name : suitecrm-${SUFFIXE}
-    restart: unless-stopped
+    #restart: unless-stopped
     ports:
       - 9400-9499:80
     volumes:

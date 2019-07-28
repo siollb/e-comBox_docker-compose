@@ -5,7 +5,7 @@ services :
   db :
     image : aporaf/mariadb-prestashop-vierge:latest
     container_name : prestashop-db-${SUFFIXE}
-    restart : unless-stopped
+    #restart : unless-stopped
     expose :
       - "3306"
     environment :
@@ -19,7 +19,7 @@ services :
   prestashop :
     image : aporaf/prestashop-vierge:latest
     container_name : prestashop-${SUFFIXE}
-    restart : unless-stopped
+    #restart : unless-stopped
     ports :
       - "9100-9199:80"
     volumes :

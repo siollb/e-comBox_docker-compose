@@ -4,7 +4,7 @@ services:
     image: mariadb:10.3
     container_name : kanboard-db-${SUFFIXE}
     command: --default-authentication-plugin=mysql_native_password
-    restart: unless-stopped
+    #restart: unless-stopped
     expose :
       - "3306"
     environment:
@@ -18,7 +18,7 @@ services:
   kanboard:
     image: kanboard/kanboard:v1.2.10
     container_name : kanboard-${SUFFIXE}
-    restart: unless-stopped
+    #restart: unless-stopped
     ports:
       - 9600-9699:80
     volumes:

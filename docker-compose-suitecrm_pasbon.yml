@@ -3,7 +3,7 @@ services:
   db:
     image: aporaf/mariadb-suitecrm:latest
     container_name : suitecrm-db-${SUFFIXE}
-    restart: unless-stopped
+    #restart: unless-stopped
     expose :
       - "3306"
     volumes:
@@ -18,7 +18,7 @@ services:
   suitecrm:
     image: aporaf/suitecrm:latest
     container_name : suitecrm-${SUFFIXE}
-    restart: unless-stopped
+    #restart: unless-stopped
     ports:
       - 9400-9499:80
     volumes:

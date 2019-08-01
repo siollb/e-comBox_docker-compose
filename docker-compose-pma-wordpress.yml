@@ -1,0 +1,25 @@
+version: "2"
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma_${NOMSTACK}
+    #restart: unless-stopped
+    ports:
+      - 8800-8899:80
+    external_links:
+      - ${NOMCONTENEUR_DB}:db
+    networks: 
+      - default
+    environment :
+      - PMA_USER=userWP 
+      - PMA_PASSWORD=mdpWP
+      - PMA_HOST=db
+
+networks:
+  default:
+    external:
+      name: ${NOMSTACK}_default 
+      
+
+
+ 

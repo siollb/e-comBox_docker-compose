@@ -5,7 +5,7 @@ services:
     container_name : sftp_${NOMSTACK}
     #restart: unless-stopped
     ports :
-      - 2200-2299:22
+      - 2200-2249:22
     volumes:
       - ${NOMSTACK}_prestashop_data:/home/adminSFTP/sources
     command: adminSFTP:sftpAdmin0:33:33

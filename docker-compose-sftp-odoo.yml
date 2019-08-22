@@ -5,7 +5,7 @@ services:
     container_name : sftp_${NOMSTACK}
     #restart: unless-stopped
     ports :
-      - 2200-2299:22
+      - 2250-2299:22
     volumes:
       - ${NOMSTACK}_odoo_data_addons:/home/adminSFTP/addons
     command: adminSFTP:sftpAdmin0:101:101

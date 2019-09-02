@@ -5,7 +5,7 @@ services:
     container_name: pma_${NOMSTACK}
     #restart: unless-stopped
     ports:
-      - 8800-8839:80
+      - 8700-8739:80
     external_links:
       - ${NOMCONTENEUR_DB}:db
     networks: 

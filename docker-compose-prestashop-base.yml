@@ -6,6 +6,8 @@ services :
     image : mariadb:10.3
     container_name : prestashop-db-${SUFFIXE}
     #restart : unless-stopped
+    networks:
+      - net_e-combox
     expose :
       - "3306"
     environment :
@@ -20,6 +22,8 @@ services :
     image : prestashop/prestashop
     container_name : prestashop-${SUFFIXE}
     #restart : unless-stopped
+    networks:
+      - net_e-combox
     ports :
       - "9100-9199:80"
     volumes :
@@ -39,7 +43,12 @@ services :
       PS_HANDLE_DYNAMIC_DOMAIN : 1
       PS_FOLDER_ADMIN : administration
       PS_FOLDER_INSTALL : installation
- 
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
+
 volumes :
   prestashop_data_db: {}
   prestashop_data: {}

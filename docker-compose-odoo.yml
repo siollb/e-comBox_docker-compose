@@ -4,6 +4,8 @@ services:
     image: postgres:10
     container_name : odoo-db-${SUFFIXE}
     #restart: unless-stopped
+    networks:
+      - net_e-combox
     environment:
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: mdpOdoo
@@ -16,6 +18,8 @@ services:
     image: odoo:12.0
     container_name : odoo-${SUFFIXE}
     #restart: unless-stopped
+    networks:
+      - net_e-combox
     links :
       - db
     ports:
@@ -31,6 +35,11 @@ services:
       PORT: 5432
       USER: userOdoo
       PASSWORD: mdpOdoo
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
 
 volumes:
   odoo_data_db: {}

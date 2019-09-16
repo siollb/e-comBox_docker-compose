@@ -35,6 +35,11 @@ services:
       SUITECRM_USERNAME: adminSCRM
       SUITECRM_PASSWORD: scrmAdmin0
       SUITECRM_EMAIL: admin@btsmco.fr
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
       
 volumes:
   suitecrm_data_db: {}

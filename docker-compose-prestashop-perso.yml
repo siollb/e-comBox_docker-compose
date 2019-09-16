@@ -6,6 +6,8 @@ services :
     image : aporaf/mariadb-prestashop-perso:latest
     container_name : prestashop-db-${SUFFIXE}
     #restart : unless-stopped
+    networks:
+      - net_e-combox
     expose :
       - "3306"
     environment :
@@ -20,13 +22,20 @@ services :
     image : aporaf/prestashop-perso:latest
     container_name : prestashop-${SUFFIXE}
     #restart : unless-stopped
+    networks:
+      - net_e-combox
     ports :
       - "9100-9199:80"
     volumes :
       - prestashop_data:/var/www/html
     depends_on :
       - db
- 
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
+
 volumes :
   prestashop_data_db: {}
   prestashop_data: {}

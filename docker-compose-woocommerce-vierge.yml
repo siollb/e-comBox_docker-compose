@@ -4,6 +4,8 @@ services:
     image: aporaf/mariadb-woocommerce-vierge:latest
     container_name : woocommerce-db-${SUFFIXE}
     #restart: unless-stopped
+    networks:
+      - net_e-combox
     expose :
       - "3306"
     environment:
@@ -18,12 +20,19 @@ services:
     image: aporaf/woocommerce-vierge-avec-wp-cli:latest
     container_name : woocommerce-${SUFFIXE}
     #restart: unless-stopped
+    networks:
+      - net_e-combox
     ports:
       - 9200-9299:80
     volumes:
       - woocommerce_data:/var/www/html
     depends_on:
       - db
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
 
 volumes:
   woocommerce_data_db: {}

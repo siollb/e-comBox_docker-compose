@@ -4,6 +4,8 @@ services:
     image: mariadb:10.3
     container_name : suitecrm-db-${SUFFIXE}
     #restart: unless-stopped
+    networks:
+      - net_e-combox
     expose :
       - "3306"
     #ports:
@@ -20,6 +22,8 @@ services:
     image: craftingjava/suitecrm:7.10.11
     container_name : suitecrm-${SUFFIXE}
     #restart: unless-stopped
+    networks:
+      - net_e-combox
     ports:
       - 9400-9499:80
     volumes:
@@ -41,7 +45,12 @@ services:
       EXPORT_CHARSET: ISO-8859-1
       DEFAULT_LANGUAGE: fr_FR
       SYSTEM_NAME: Zentek CRM
-      
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
+     
 volumes:
   suitecrm_data_db: {}
   suitecrm_data: {}

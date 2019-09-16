@@ -4,6 +4,8 @@ services:
     image: mariadb:10.3
     container_name : mautic-db-${SUFFIXE}
     #restart: unless-stopped
+    networks:
+      - net_e-combox
     expose :
       - "3306"
     environment:
@@ -18,6 +20,8 @@ services:
     image: mautic/mautic
     container_name : mautic-${SUFFIXE}
     #restart: unless-stopped
+    networks:
+      - net_e-combox
     ports:
       - 9300-9399:80
     volumes:
@@ -30,6 +34,11 @@ services:
       MAUTIC_DB_USER: userMautic
       MAUTIC_DB_PASSWORD: mdpMautic
       MAUTIC_VERSION: 2.15.1
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
 
 volumes:
   mautic_data_db: {}

@@ -26,6 +26,10 @@ services:
       - net_e-combox
     volumes:
       - blog_data:/var/www/html
+    links:
+      - db:blog-db-${SUFFIXE}
+    extra-hosts:
+      - db:${ADRESSE_IP_DB}
     depends_on:
       - db
 

@@ -26,6 +26,8 @@ services:
       - 9200-9299:80
     volumes:
       - wordpress_data:/var/www/html
+    external_links:
+      - wordpress-db-${SUFFIXE}:db
     depends_on:
       - db
     environment:

@@ -26,6 +26,8 @@ services:
       - 9200-9299:80
     volumes:
       - woocommerce_data:/var/www/html
+    external_links:
+      - woocommerce-db-${SUFFIXE}:db
     depends_on:
       - db
 

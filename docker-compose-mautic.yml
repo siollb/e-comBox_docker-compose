@@ -26,6 +26,8 @@ services:
       - 9300-9399:80
     volumes:
       - mautic_data:/var/www/html
+    external_links:
+      - mautic-db-${SUFFIXE}:db
     depends_on:
       - db
     environment:

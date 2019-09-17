@@ -27,9 +27,9 @@ services :
     ports :
       - "9100-9199:80"
     volumes :
-      - prestashop_data:/var/www/html
-    links :
-      - db: db
+      - prestashop_data:/var/www/html  
+    external_links:
+      - prestashop-db-${SUFFIXE}:db
     depends_on :
       - db
  

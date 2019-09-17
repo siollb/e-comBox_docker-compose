@@ -31,6 +31,8 @@ services:
       - kanboard_data_ssl:/etc/nginx/ssl
     depends_on:
       - db
+    external_links:
+      - kanboard-db-${SUFFIXE}:db
     environment:
       DATABASE_URL: mysql://userKB:mdpKB@db/kanboard
 

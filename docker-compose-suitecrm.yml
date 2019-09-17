@@ -32,6 +32,8 @@ services:
     tty: true
     depends_on:
       - db
+    external_links:
+      - suitecrm-db-${SUFFIXE}:db
     environment:
       DATABASE_HOST: db
       DATABASE_TYPE: mysql

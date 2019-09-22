@@ -30,6 +30,8 @@ services :
       - prestashop_data:/var/www/html
     external_links:
       - prestashop-db-${SUFFIXE}:db
+    environment :
+      PS_HANDLE_DYNAMIC_DOMAIN : 1
     depends_on :
       - db
 

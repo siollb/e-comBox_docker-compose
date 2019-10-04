@@ -16,7 +16,7 @@ services:
     volumes:
       - mautic_data_db:/var/lib/mysql
 
-  wordpress:
+  mautic:
     image: mautic/mautic
     container_name : mautic-${SUFFIXE}
     #restart: unless-stopped

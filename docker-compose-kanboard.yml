@@ -14,6 +14,7 @@ services:
       MYSQL_DATABASE: kanboard
       MYSQL_USER: userKB
       MYSQL_PASSWORD: mdpKB
+      MYSQL_INITDB_SKIP_TZINFO: 1
     volumes:
       - kanboard_data_db:/var/lib/mysql
 

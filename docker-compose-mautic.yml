@@ -13,6 +13,7 @@ services:
       MYSQL_DATABASE: mautic
       MYSQL_USER: userMautic
       MYSQL_PASSWORD: mdpMautic
+      MYSQL_INITDB_SKIP_TZINFO: 1
     volumes:
       - mautic_data_db:/var/lib/mysql
 

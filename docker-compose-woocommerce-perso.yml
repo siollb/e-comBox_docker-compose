@@ -12,7 +12,8 @@ services:
       MYSQL_ROOT_PASSWORD: bdAdmin
       MYSQL_DATABASE: wordpress
       MYSQL_USER: userWP
-      MYSQL_PASSWORD: mdpWP    
+      MYSQL_PASSWORD: mdpWP
+      MYSQL_INITDB_SKIP_TZINFO: 1    
     volumes:
       - woocommerce_data_db:/var/lib/mysql
 

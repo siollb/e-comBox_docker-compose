@@ -39,6 +39,7 @@ services:
       HUMHUB_DB_USER: userHH
       HUMHUB_DB_PASSWORD: mdpHH
       HUMHUB_AUTO_INSTALL: 1
+      MYSQL_INITDB_SKIP_TZINFO: 1
 
 networks:
   net_e-combox:

@@ -15,6 +15,7 @@ services :
       MYSQL_DATABASE : prestashop
       MYSQL_USER : userPS
       MYSQL_PASSWORD : mdpPS
+      MYSQL_INITDB_SKIP_TZINFO: 1
     volumes :
       - prestashop_data_db:/var/lib/mysql
 

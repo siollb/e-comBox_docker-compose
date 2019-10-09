@@ -17,6 +17,7 @@ services:
       MYSQL_DATABASE: suitecrm
       MYSQL_USER: userSuiteCRM
       MYSQL_PASSWORD: mdpSuiteCRM
+      MYSQL_INITDB_SKIP_TZINFO: 1
     
   suitecrm:
     image: craftingjava/suitecrm:7.10.11

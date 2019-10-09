@@ -13,6 +13,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: userWP
       MYSQL_PASSWORD: mdpWP
+      MYSQL_INITDB_SKIP_TZINFO: 1
     volumes:
       - wordpress_data_db:/var/lib/mysql
 

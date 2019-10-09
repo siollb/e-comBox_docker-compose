@@ -13,6 +13,7 @@ services:
       MYSQL_DATABASE: humhub
       MYSQL_USER: userHH
       MYSQL_PASSWORD: mdpHH
+      MYSQL_INITDB_SKIP_TZINFO: 1
     volumes:
       - humhub_data_db:/var/lib/mysql
 
@@ -38,8 +39,7 @@ services:
       HUMHUB_DB_NAME: humhub
       HUMHUB_DB_USER: userHH
       HUMHUB_DB_PASSWORD: mdpHH
-      HUMHUB_AUTO_INSTALL: 1
-      MYSQL_INITDB_SKIP_TZINFO: 1
+      HUMHUB_AUTO_INSTALL: 1    
 
 networks:
   net_e-combox:

@@ -18,7 +18,7 @@ services:
       - wordpress_data_db:/var/lib/mysql
 
   wordpress:
-    image: aporaf/wordpress-avec-wp-cli:latest
+    image: aporaf/wordpress-avec-wp-cli:0.2
     container_name : wordpress-${SUFFIXE}
     #restart: unless-stopped
     networks:

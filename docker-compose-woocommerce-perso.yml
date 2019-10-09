@@ -1,7 +1,7 @@
 version: "2"
 services:
   db:
-    image: aporaf/mariadb-woocommerce-perso:latest
+    image: aporaf/mariadb-woocommerce-perso:0.2
     container_name : woocommerce-db-${SUFFIXE}
     #restart: unless-stopped
     networks:
@@ -18,7 +18,7 @@ services:
       - woocommerce_data_db:/var/lib/mysql
 
   wordpress:
-    image: aporaf/woocommerce-perso-avec-wp-cli:latest
+    image: aporaf/woocommerce-perso-avec-wp-cli:0.2
     container_name : woocommerce-${SUFFIXE}
     #restart: unless-stopped
     networks:

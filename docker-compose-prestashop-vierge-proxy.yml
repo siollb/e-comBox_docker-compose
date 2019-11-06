@@ -31,7 +31,14 @@ services :
     volumes :
       - prestashop_data:/var/www/html  
     external_links:
-      - prestashop-db-${SUFFIXE}:db    
+      - prestashop-db-${SUFFIXE}:db
+    environment :
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
     depends_on :
       - db
  

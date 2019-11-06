@@ -1,0 +1,62 @@
+version: "2"
+services:
+  db:
+    image: postgres:10
+    container_name : odoo-db-${SUFFIXE}
+    #restart: unless-stopped
+    networks:
+      - net_e-combox
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: mdpOdoo
+      POSTGRES_USER: userOdoo
+      PGDATA: /var/lib/postgresql/data/pgdata
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+    volumes:
+      - odoo_data_db:/var/lib/postgresql/data
+
+  odoo:
+    image: odoo:12.0
+    container_name : odoo-${SUFFIXE}
+    #restart: unless-stopped
+    networks:
+      - net_e-combox
+    links :
+      - db
+    ports:
+      - 9500-9599:8069
+    volumes:
+      - odoo_data:/var/lib/odoo
+      - odoo_data_config:/etc/odoo
+      - odoo_data_addons:/mnt/extra-addons
+    depends_on:
+      - db
+    external_links:
+      - odoo-db-${SUFFIXE}:db
+    environment:
+      HOST: db
+      PORT: 5432
+      USER: userOdoo
+      PASSWORD: mdpOdoo
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
+
+volumes:
+  odoo_data_db: {}
+  odoo_data: {}
+  odoo_data_config: {}
+  odoo_data_addons: {}

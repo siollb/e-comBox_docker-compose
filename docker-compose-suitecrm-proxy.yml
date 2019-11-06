@@ -1,0 +1,72 @@
+version: "2"
+services:
+  db:
+    image: aporaf/mariadb10.3
+    container_name : suitecrm-db-${SUFFIXE}
+    #restart: unless-stopped
+    networks:
+      - net_e-combox
+    expose :
+      - "3306"
+    #ports:
+      #- "3306"
+    volumes:
+      - suitecrm_data_db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: bdAdmin
+      MYSQL_DATABASE: suitecrm
+      MYSQL_USER: userSuiteCRM
+      MYSQL_PASSWORD: mdpSuiteCRM
+      MYSQL_INITDB_SKIP_TZINFO: 1
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+    
+  suitecrm:
+    image: craftingjava/suitecrm:7.10.11
+    container_name : suitecrm-${SUFFIXE}
+    #restart: unless-stopped
+    networks:
+      - net_e-combox
+    ports:
+      - 9400-9499:80
+    volumes:
+      - suitecrm_data:/var/www/html/upload
+      - suitecrm_conf:/var/www/html/conf.d
+    tty: true
+    depends_on:
+      - db
+    external_links:
+      - suitecrm-db-${SUFFIXE}:db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_TYPE: mysql
+      DATABASE_NAME: suitecrm
+      DB_ADMIN_USERNAME: userSuiteCRM
+      DB_ADMIN_PASSWORD: mdpSuiteCRM
+      SITE_USERNAME: adminSCRM
+      SITE_PASSWORD: scrmAdmin0
+      #SUITECRM_EMAIL: admin@btsmco.fr
+      DATE_FORMAT: d-m-Y
+      EXPORT_CHARSET: ISO-8859-1
+      DEFAULT_LANGUAGE: fr_FR
+      SYSTEM_NAME: Zentek CRM
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
+     
+volumes:
+  suitecrm_data_db: {}
+  suitecrm_data: {}
+  suitecrm_conf: {}

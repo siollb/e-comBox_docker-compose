@@ -17,6 +17,12 @@ services :
       MYSQL_PASSWORD : mdpPS
       #TZ: Europe/Paris
       MYSQL_INITDB_SKIP_TZINFO : 1
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
     volumes :
       - prestashop_data_db:/var/lib/mysql
 

@@ -1,0 +1,25 @@
+version: "2"
+services:
+  sftp:
+    image: atmoz/sftp
+    container_name : sftp_${NOMSTACK}
+    #restart: unless-stopped
+    ports :
+      - 2200-2249:22
+    networks:
+      - net_e-combox
+    volumes:
+      - ${NOMSTACK}_prestashop_data:/home/adminSFTP/sources
+    command: adminSFTP:sftpAdmin0:33:33
+    environment:
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox

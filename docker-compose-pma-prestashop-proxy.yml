@@ -7,19 +7,24 @@ services:
     networks:
       - net_e-combox
     ports:
-      - 8770-8799:80
+      - 8700-8739:80
     external_links:
       - ${NOMCONTENEUR_DB}:db
     environment :
-      - PMA_USER=userOdoo 
-      - PMA_PASSWORD=mdpOdoo
+      - PMA_USER=userPS 
+      - PMA_PASSWORD=mdpPS
       - PMA_HOST=db
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
 
 networks:
   net_e-combox:
     external:
       name: bridge_e-combox
-      
 
 
  

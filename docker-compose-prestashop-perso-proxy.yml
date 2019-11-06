@@ -3,7 +3,7 @@ version : '2'
 services :
 
   db :
-    image : mariadb:10.3
+    image : aporaf/mariadb-prestashop-perso:0.4
     container_name : prestashop-db-${SUFFIXE}
     #restart : unless-stopped
     networks:
@@ -16,11 +16,17 @@ services :
       MYSQL_USER : userPS
       MYSQL_PASSWORD : mdpPS
       MYSQL_INITDB_SKIP_TZINFO: 1
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
     volumes :
       - prestashop_data_db:/var/lib/mysql
 
   prestashop :
-    image : prestashop/prestashop
+    image : aporaf/prestashop-perso:0.4
     container_name : prestashop-${SUFFIXE}
     #restart : unless-stopped
     networks:
@@ -29,23 +35,18 @@ services :
       - "9100-9199:80"
     volumes :
       - prestashop_data:/var/www/html
-    depends_on :
-      - db
     external_links:
       - prestashop-db-${SUFFIXE}:db
     environment :
-      DB_SERVER : db
-      DB_NAME : prestashop
-      DB_USER : userPS
-      DB_PASSWD : mdpPS
-      DB_PREFIX : ps_
-      PS_LANGUAGES : fr
-      PS_LANGUAGE : fr
-      PS_COUNTRY : FR
-      PS_INSTALL_AUTO : 1
       PS_HANDLE_DYNAMIC_DOMAIN : 1
-      PS_FOLDER_ADMIN : administration
-      PS_FOLDER_INSTALL : installation
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+    depends_on :
+      - db
 
 networks:
   net_e-combox:

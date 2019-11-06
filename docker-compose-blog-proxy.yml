@@ -1,0 +1,55 @@
+version: "2"
+services:
+  db:
+    image: aporaf/mariadb-blog:0.3
+    container_name : blog-db-${SUFFIXE}
+    #restart: unless-stopped
+    expose :
+      - "3306"
+    networks:
+      - net_e-combox
+    environment:
+      MYSQL_ROOT_PASSWORD: bdAdmin
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: userWP
+      MYSQL_PASSWORD: mdpWP
+      MYSQL_INITDB_SKIP_TZINFO: 1
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+    volumes:
+      - blog_data_db:/var/lib/mysql
+
+  wordpress:
+    image: aporaf/blog-avec-wp-cli:0.3
+    container_name : blog-${SUFFIXE}
+    #restart: unless-stopped
+    ports:
+      - 9200-9299:80
+    networks:
+      - net_e-combox
+    environment:
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+    volumes:
+      - blog_data:/var/www/html
+    external_links:
+      - blog-db-${SUFFIXE}:db
+    depends_on:
+      - db
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox
+
+volumes:
+  blog_data_db: {}
+  blog_data: {}

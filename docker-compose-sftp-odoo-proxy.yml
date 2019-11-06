@@ -1,0 +1,25 @@
+version: "2"
+services:
+  sftp:
+    image: atmoz/sftp
+    container_name : sftp_${NOMSTACK}
+    #restart: unless-stopped
+    networks:
+      - net_e-combox
+    ports :
+      - 2250-2299:22
+    volumes:
+      - ${NOMSTACK}_odoo_data_addons:/home/adminSFTP/addons
+    command: adminSFTP:sftpAdmin0:101:101
+    environment:
+      HTTP_PROXY : $HTTP_PROXY
+      HTTPS_PROXY : $HTTPS_PROXY
+      http_proxy : $http_proxy
+      https_proxy : $https_proxy
+      no_proxy : $no_proxy
+      NO_PROXY : $NO_PROXY
+
+networks:
+  net_e-combox:
+    external:
+      name: bridge_e-combox 

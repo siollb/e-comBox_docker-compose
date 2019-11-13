@@ -36,7 +36,6 @@ services:
       MAUTIC_DB_NAME: mautic
       MAUTIC_DB_USER: userMautic
       MAUTIC_DB_PASSWORD: mdpMautic
-      #MAUTIC_VERSION: 2.15.1
 
 networks:
   net_e-combox:

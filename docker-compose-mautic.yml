@@ -32,11 +32,11 @@ services:
     depends_on:
       - db
     environment:
-      MAUTIC_DB_HOST: db:3306
+      MAUTIC_DB_HOST: db
       MAUTIC_DB_NAME: mautic
       MAUTIC_DB_USER: userMautic
       MAUTIC_DB_PASSWORD: mdpMautic
-      MAUTIC_VERSION: 2.15.1
+      #MAUTIC_VERSION: 2.15.1
 
 networks:
   net_e-combox:
